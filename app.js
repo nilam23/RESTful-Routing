@@ -1,7 +1,10 @@
+const expressSanitizer = require("express-sanitizer");
+
 var express = require("express"),
     app = express(),
     methodOverride = require("method-override"),
     bodyParser = require("body-parser"),
+    sanitizer = require("express-sanitizer"),
     mongoose = require("mongoose");
 const port = 3000;
 
@@ -10,6 +13,7 @@ app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
+app.use(sanitizer());
 
 var blogSchema = mongoose.Schema({
     title: String,
@@ -41,6 +45,7 @@ app.get("/blogs/new", (req, res) => {
 });
 
 app.post("/blogs", (req, res) => {
+    req.body.blog.body = req.sanitize(req.body.blog.body);
     Blog.create(req.body.blog, (err, item) => {
         if (err)
             res.render("new");
@@ -68,6 +73,7 @@ app.get("/blogs/:id/edit", (req, res) => {
 });
 
 app.put("/blogs/:id", (req, res) => {
+    req.body.blog.body = req.sanitize(req.body.blog.body);
     Blog.findByIdAndUpdate(req.params.id, req.body.blog, (err, item) => {
         if (err)
             res.redirect("/blogs");

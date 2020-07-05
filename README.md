@@ -28,3 +28,15 @@
 ## Setup 06:
 - To enable delete a post.
 - To use findByIdAndRemove(id, callback) method for deleting the post.
+
+## Some additional features:
+- To use Express Sanitizer.
+- To style the INDEX template.
+
+# Steps to run:
+- Fork the repository.
+- Clone the repository using `https://github.com/<Your-User-Name>/RESTful-Routing.git`
+- Change directory to /RESTful-Routing
+- install dependencies with `npm i dependecies`
+- Run the server with `node app.js`
+- Go to `localhost:3000` and you're all set.
