@@ -1,5 +1,3 @@
-const expressSanitizer = require("express-sanitizer");
-
 var express = require("express"),
     app = express(),
     methodOverride = require("method-override"),
