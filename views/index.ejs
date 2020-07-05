@@ -1,0 +1,12 @@
+<%- include("partials/header") %>
+
+<% blogs.forEach(blog => { %>
+<div id="unique">
+    <h2><%= blog.title %>, created on <%= blog.created.toDateString() %></h2>
+    <img src="<%= blog.image %>" />
+    <h5><%= blog.body.substring(0, 100) %>...</h5>
+    <a class="ui inverted small secondary button" href="/blogs/<%= blog._id %>">Read More</a>
+</div>
+<% }); %>
+
+<%- include("partials/footer") %>
